@@ -2,6 +2,8 @@ package pl.dungeoncrwaler.Dungeon_Crawler.CharacterGenerator;
 
 import pl.dungeoncrwaler.Dungeon_Crawler.CharacterGenerator.repository.PlayerRepository;
 
+import java.util.Optional;
+
 public class CharacterGeneratorFacade {
 
     private final PlayerRepository playerRepository;
@@ -24,7 +26,11 @@ public class CharacterGeneratorFacade {
                           statGenerator.generateStat("attack",nick),
                           statGenerator.generateStat("defence",nick),
                           statGenerator.generateStat("runPossibility",nick));
-        System.out.println("player generated");
+        playerRepository.save(generatedPlayer);
         return playerRepository.findById(generatedPlayer.getId()).isPresent() ? playerRepository.findById(generatedPlayer.getId()).get() : null;
+    }
+
+    public Optional<Player> getPlayer(Long id){
+        return playerRepository.findById(id);
     }
 }

@@ -15,14 +15,13 @@ public class CharacterGeneratorConfiguration {
        return new CharacterGeneratorFacade(playerRepository,statGenerator,nickNameGenerator,nameGenerator);
     }
 
-    public CharacterGeneratorFacade characterGeneratorFacadeForTest(PlayerRepository playerRepository){
+    public CharacterGeneratorFacade characterGeneratorFacadeForTest(PlayerRepository playerRepository, NameGenerator nameGenerator){
         Generable atk = new AttackPowerGenerator();
         Generable def = new DefenceGenerator();
         Generable maxHealth = new MaxHealthGenerator();
         Generable runPos = new RunPossibilityGenerator();
         StatGenerator statGenerator = new StatGenerator(atk,def,runPos,maxHealth);
         NickNameGenerator nickNameGenerator = new NickNameGenerator();
-        NameGenerator nameGenerator= new NameGenerator();
         return characterGeneratorFacade(playerRepository,statGenerator,nickNameGenerator,nameGenerator);
     }
 

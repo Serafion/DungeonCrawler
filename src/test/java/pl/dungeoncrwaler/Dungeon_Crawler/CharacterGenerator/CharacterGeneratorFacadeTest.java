@@ -20,16 +20,16 @@ class CharacterGeneratorFacadeTest {
     CharacterGeneratorFacade characterGeneratorFacade = new CharacterGeneratorConfiguration().characterGeneratorFacadeForTest(repository,nameGenerator);
 
     //When
-    Player player = characterGeneratorFacade.generateRandomPlayer();
+    Character character = characterGeneratorFacade.generateRandomPlayer();
 
     //Then
-    assertThat(player.getMaxHealth()).isPositive();
-    assertThat(player.getName()).isGreaterThan("");
-    assertThat(player.getId()).isGreaterThan(-1L);
-    assertThat(player.getRunPossibility()).isPositive();
-    assertThat(player.getDefence()).isPositive();
-    assertThat(player.getAttackPower()).isPositive();
-    assertThat(player.getNickName()).isNotNull();
+    assertThat(character.getMaxHealth()).isPositive();
+    assertThat(character.getName()).isGreaterThan("");
+    assertThat(character.getId()).isGreaterThan(-1L);
+    assertThat(character.getRunPossibility()).isPositive();
+    assertThat(character.getDefence()).isPositive();
+    assertThat(character.getAttackPower()).isPositive();
+    assertThat(character.getNickName()).isNotNull();
     }
 
     @Test
@@ -39,10 +39,10 @@ class CharacterGeneratorFacadeTest {
         CharacterGeneratorTestRepository repository = new CharacterGeneratorTestRepository();
         NameGenerator nameGenerator = new NameGeneratorTest();
         CharacterGeneratorFacade characterGeneratorFacade = new CharacterGeneratorConfiguration().characterGeneratorFacadeForTest(repository,nameGenerator);
-        Player player = characterGeneratorFacade.generateRandomPlayer();
+        Character character = characterGeneratorFacade.generateRandomPlayer();
 
         //When
-        Optional<Player> playerOptional = characterGeneratorFacade.getPlayer(player.getId());
+        Optional<Character> playerOptional = characterGeneratorFacade.getPlayer(character.getId());
 
         //Then
         assertThat(playerOptional).isPresent();
@@ -54,10 +54,10 @@ class CharacterGeneratorFacadeTest {
         CharacterGeneratorTestRepository repository = new CharacterGeneratorTestRepository();
         NameGenerator nameGenerator = new NameGeneratorTest();
         CharacterGeneratorFacade characterGeneratorFacade = new CharacterGeneratorConfiguration().characterGeneratorFacadeForTest(repository,nameGenerator);
-        Player player = characterGeneratorFacade.generateRandomPlayer();
+        Character character = characterGeneratorFacade.generateRandomPlayer();
 
         //When
-        Optional<Player> playerOptional = characterGeneratorFacade.getPlayer(player.getId()-1);
+        Optional<Character> playerOptional = characterGeneratorFacade.getPlayer(character.getId()-1);
 
         //Then
         assertThat(playerOptional).isEmpty();

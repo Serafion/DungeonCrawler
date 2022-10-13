@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.dungeoncrwaler.Dungeon_Crawler.CharacterGenerator.CharacterGeneratorFacade;
-import pl.dungeoncrwaler.Dungeon_Crawler.CharacterGenerator.Player;
+import pl.dungeoncrwaler.Dungeon_Crawler.CharacterGenerator.Character;
 
 @Controller
 public class CharacterGeneratorController {
@@ -15,8 +15,8 @@ public class CharacterGeneratorController {
     private CharacterGeneratorFacade characterGeneratorFacade;
 
     @RequestMapping(value = "/generate_character", method = RequestMethod.GET, headers = "Accept=application/json")
-    public ResponseEntity<Player> generateCharacter(){
-        Player generatedPlayer = characterGeneratorFacade.generateRandomPlayer();
-        return ResponseEntity.ok().body(generatedPlayer);
+    public ResponseEntity<Character> generateCharacter(){
+        Character generatedCharacter = characterGeneratorFacade.generateRandomPlayer();
+        return ResponseEntity.ok().body(generatedCharacter);
     }
 }

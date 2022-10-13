@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class Player {
+public class Character {
 
 
     @Id
@@ -21,7 +21,7 @@ public class Player {
     private Integer defence;
     private Integer runPossibility;
 
-    public Player(String name, NickName nickName, Integer maxHealth, Integer attackPower, Integer defence, Integer runPossibility) {
+    public Character(String name, NickName nickName, Integer maxHealth, Integer attackPower, Integer defence, Integer runPossibility) {
         this.name = name;
         this.nickName = nickName;
         this.maxHealth = maxHealth;

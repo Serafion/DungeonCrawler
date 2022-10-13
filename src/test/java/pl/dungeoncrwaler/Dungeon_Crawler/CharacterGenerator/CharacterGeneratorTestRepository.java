@@ -8,11 +8,11 @@ import java.util.Optional;
 
 public class CharacterGeneratorTestRepository implements PlayerRepository {
 
-    Map<Long,Player> map = new HashMap<>();
+    Map<Long, Character> map = new HashMap<>();
     Long ids = 1L;
 
     @Override
-    public <S extends Player> S save(S entity) {
+    public <S extends Character> S save(S entity) {
         entity.setId(ids);
         map.put(ids,entity);
         ids++;
@@ -20,12 +20,12 @@ public class CharacterGeneratorTestRepository implements PlayerRepository {
     }
 
     @Override
-    public <S extends Player> Iterable<S> saveAll(Iterable<S> entities) {
+    public <S extends Character> Iterable<S> saveAll(Iterable<S> entities) {
         return null;
     }
 
     @Override
-    public Optional<Player> findById(Long aLong) {
+    public Optional<Character> findById(Long aLong) {
         return map.containsKey(aLong) ? Optional.of(map.get(aLong)): Optional.empty();
     }
 
@@ -35,12 +35,12 @@ public class CharacterGeneratorTestRepository implements PlayerRepository {
     }
 
     @Override
-    public Iterable<Player> findAll() {
+    public Iterable<Character> findAll() {
         return null;
     }
 
     @Override
-    public Iterable<Player> findAllById(Iterable<Long> longs) {
+    public Iterable<Character> findAllById(Iterable<Long> longs) {
         return null;
     }
 
@@ -55,7 +55,7 @@ public class CharacterGeneratorTestRepository implements PlayerRepository {
     }
 
     @Override
-    public void delete(Player entity) {
+    public void delete(Character entity) {
 
     }
 
@@ -65,7 +65,7 @@ public class CharacterGeneratorTestRepository implements PlayerRepository {
     }
 
     @Override
-    public void deleteAll(Iterable<? extends Player> entities) {
+    public void deleteAll(Iterable<? extends Character> entities) {
 
     }
 

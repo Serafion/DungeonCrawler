@@ -9,7 +9,7 @@ import java.util.Optional;
 public class CharacterGeneratorTestRepository implements PlayerRepository {
 
     Map<Long,Player> map = new HashMap<>();
-    Long ids = 0L;
+    Long ids = 1L;
 
     @Override
     public <S extends Player> S save(S entity) {
@@ -26,7 +26,7 @@ public class CharacterGeneratorTestRepository implements PlayerRepository {
 
     @Override
     public Optional<Player> findById(Long aLong) {
-        return Optional.of(map.get(aLong));
+        return map.containsKey(aLong) ? Optional.of(map.get(aLong)): Optional.empty();
     }
 
     @Override

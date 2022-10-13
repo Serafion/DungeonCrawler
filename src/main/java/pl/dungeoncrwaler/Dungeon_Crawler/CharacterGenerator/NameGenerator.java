@@ -1,11 +1,6 @@
 package pl.dungeoncrwaler.Dungeon_Crawler.CharacterGenerator;
 
-import org.springframework.stereotype.Component;
+public interface NameGenerator {
 
-@Component
-class NameGenerator {
-
-    public String generateName(){
-        return "xyz";
-    }
+    String generateName();
 }

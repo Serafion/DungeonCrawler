@@ -10,4 +10,6 @@ public class DungeonCrawlerApplication {
 		SpringApplication.run(DungeonCrawlerApplication.class, args);
 	}
 
+
+
 }

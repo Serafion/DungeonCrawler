@@ -1,3 +1,4 @@
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Serafion/DungeonCrawler/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Serafion/DungeonCrawler/tree/main)
 # DungeonCrawler
 Text game inspired by mechanics of fast rpg card games like Munchkin
 
@@ -11,3 +12,4 @@ Stack:
 3) Spring framework (Spring Boot, Spring Web, Spring Data)
 4) Project Lombok
 5) TDD development with JUnit5, Mockito, AssertJ
+6) Circle CI builds

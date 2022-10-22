@@ -1,13 +1,13 @@
 package pl.dungeoncrwaler.Dungeon_Crawler.MonsterCreator;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pl.dungeoncrwaler.Dungeon_Crawler.MonsterCreator.MonsterDto.MonsterDto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-@Disabled
+
 public class MonsterCreatorFacadeTest {
 
 
@@ -18,10 +18,77 @@ public class MonsterCreatorFacadeTest {
         MonsterCreatorFacade monsterCreatorFacade = new MonsterCreatorConfiguration().monsterCreatorFacadeTest();
 
         //When
-        Monster monster = monsterCreatorFacade.generateMonster();
+        MonsterDto monster = monsterCreatorFacade.generateRandomMonster();
 
         //Then
-        assertThat(monster.getHealth()).isPositive();
-        assertThat(monster.getName()).isGreaterThan("");
+        assertThat(monster.MaxHealth()).isPositive();
+        assertThat(monster.name()).isGreaterThan("");
+        assertThat(monster.attacks().size()).isPositive();
+        assertThat(monster.Attack()).isPositive();
+        assertThat(monster.Defence()).isPositive();
+    }
+    @Test
+    @DisplayName("Should generate a Red Dragon")
+    void should_generate_a_red_dragon(){
+        //Given
+        MonsterCreatorFacade monsterCreatorFacade = new MonsterCreatorConfiguration().monsterCreatorFacadeTest();
+
+        //When
+        MonsterDto monster = monsterCreatorFacade.generateConcreteMonster("Dragon","Red");
+
+        //Then
+        assertThat(monster.MaxHealth()).isPositive();
+        assertThat(monster.name()).isEqualTo("Red dragon");
+        assertThat(monster.attacks().size()).isPositive();
+        assertThat(monster.Attack()).isPositive();
+        assertThat(monster.Defence()).isPositive();
+    }
+    @Test
+    @DisplayName("Should generate a Green Dragon")
+    void should_generate_a_green_dragon(){
+        //Given
+        MonsterCreatorFacade monsterCreatorFacade = new MonsterCreatorConfiguration().monsterCreatorFacadeTest();
+
+        //When
+        MonsterDto monster = monsterCreatorFacade.generateConcreteMonster("Dragon","Green");
+
+        //Then
+        assertThat(monster.MaxHealth()).isPositive();
+        assertThat(monster.name()).isEqualTo("Green dragon");
+        assertThat(monster.attacks().size()).isPositive();
+        assertThat(monster.Attack()).isPositive();
+        assertThat(monster.Defence()).isPositive();
+    }
+    @Test
+    @DisplayName("Should generate a Gold Dragon")
+    void should_generate_a_gold_dragon(){
+        //Given
+        MonsterCreatorFacade monsterCreatorFacade = new MonsterCreatorConfiguration().monsterCreatorFacadeTest();
+
+        //When
+        MonsterDto monster = monsterCreatorFacade.generateConcreteMonster("Dragon","Gold");
+
+        //Then
+        assertThat(monster.MaxHealth()).isPositive();
+        assertThat(monster.name()).isEqualTo("Gold dragon");
+        assertThat(monster.attacks().size()).isPositive();
+        assertThat(monster.Attack()).isPositive();
+        assertThat(monster.Defence()).isPositive();
+    }
+    @Test
+    @DisplayName("Should generate a Diamond Dragon")
+    void should_generate_a_diamond_dragon(){
+        //Given
+        MonsterCreatorFacade monsterCreatorFacade = new MonsterCreatorConfiguration().monsterCreatorFacadeTest();
+
+        //When
+        MonsterDto monster = monsterCreatorFacade.generateConcreteMonster("Dragon","Diamond");
+
+        //Then
+        assertThat(monster.MaxHealth()).isPositive();
+        assertThat(monster.name()).isEqualTo("Diamond dragon");
+        assertThat(monster.attacks().size()).isPositive();
+        assertThat(monster.Attack()).isPositive();
+        assertThat(monster.Defence()).isPositive();
     }
 }

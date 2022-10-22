@@ -1,11 +1,19 @@
 package pl.dungeoncrwaler.Dungeon_Crawler.MonsterCreator;
 
-public interface Monster {
+import java.util.List;
 
-    String getName();
-    String getWeapon();
-    Integer getHealth();
-    Integer getPower();
-    Integer getDefence();
+public abstract class Monster {
+
+    String name;
+    List<Attack> attacks;
+    Integer health;
+    Integer power;
+    Integer defence;
+
+    public abstract String getName();
+    public abstract List<Attack> getAttacks();
+    public abstract Integer getHealth();
+    public abstract Integer getPower();
+    public abstract Integer getDefence();
 
 }

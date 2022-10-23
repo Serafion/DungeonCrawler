@@ -27,9 +27,9 @@ jobs:
       - run:
           name: Test
           command: mvn test
-  checkout:
-    steps:
-      - checkout
+#  checkout:
+#    steps:
+#      - checkout
 #  codecov/upload:
 
 # Invoke jobs via workflows

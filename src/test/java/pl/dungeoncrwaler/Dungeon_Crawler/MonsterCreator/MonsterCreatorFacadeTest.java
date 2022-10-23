@@ -2,6 +2,10 @@ package pl.dungeoncrwaler.Dungeon_Crawler.MonsterCreator;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
+import pl.dungeoncrwaler.Dungeon_Crawler.MonsterCreator.DragonFactory.DragonFactory;
+import pl.dungeoncrwaler.Dungeon_Crawler.MonsterCreator.GoblinFactory.GoblinFactory;
 import pl.dungeoncrwaler.Dungeon_Crawler.MonsterCreator.MonsterDto.MonsterDto;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,67 +32,87 @@ public class MonsterCreatorFacadeTest {
         assertThat(monster.Defence()).isPositive();
     }
     @Test
-    @DisplayName("Should generate a Red Dragon")
+    @DisplayName("Should generate a random Dragon")
     void should_generate_a_red_dragon(){
         //Given
-        MonsterCreatorFacade monsterCreatorFacade = new MonsterCreatorConfiguration().monsterCreatorFacadeTest();
+        DragonFactory dragonFactory = new DragonFactory();
 
         //When
-        MonsterDto monster = monsterCreatorFacade.generateConcreteMonster("Dragon","Red");
+        Monster monster = dragonFactory.generateRandomMonster();
 
         //Then
-        assertThat(monster.MaxHealth()).isPositive();
-        assertThat(monster.name()).isEqualTo("Red dragon");
-        assertThat(monster.attacks().size()).isPositive();
-        assertThat(monster.Attack()).isPositive();
-        assertThat(monster.Defence()).isPositive();
+        assertThat(monster.getHealth()).isPositive();
+        assertThat(monster.getName()).isGreaterThan("");
+        assertThat(monster.getAttacks().size()).isEqualTo(3);
+        assertThat(monster.getPower()).isPositive();
+        assertThat(monster.getDefence()).isPositive();
     }
     @Test
-    @DisplayName("Should generate a Green Dragon")
-    void should_generate_a_green_dragon(){
+    @DisplayName("Should generate a random goblin")
+    void should_generate_a_random_goblin(){
+        //Given
+        GoblinFactory goblinFactory = new GoblinFactory();
+
+        //When
+        Monster monster = goblinFactory.generateRandomMonster();
+
+        //Then
+        assertThat(monster.getHealth()).isPositive();
+        assertThat(monster.getName()).isGreaterThan("");
+        assertThat(monster.getAttacks().size()).isEqualTo(3);
+        assertThat(monster.getPower()).isPositive();
+        assertThat(monster.getDefence()).isPositive();
+    }
+//    @Test
+//    @DisplayName("Should generate a Gold Dragon")
+//    void should_generate_a_gold_dragon(){
+//        //Given
+//        MonsterCreatorFacade monsterCreatorFacade = new MonsterCreatorConfiguration().monsterCreatorFacadeTest();
+//
+//        //When
+//        MonsterDto monster = monsterCreatorFacade.generateConcreteMonster("Dragon","Gold");
+//
+//        //Then
+//        assertThat(monster.MaxHealth()).isPositive();
+//        assertThat(monster.name()).isEqualTo("Gold dragon");
+//        assertThat(monster.attacks().size()).isPositive();
+//        assertThat(monster.Attack()).isPositive();
+//        assertThat(monster.Defence()).isPositive();
+//    }
+    @ParameterizedTest
+    @EnumSource(DragonType.class)
+    @DisplayName("Should generate each dragon type")
+    void should_generate_a_diamond_dragon(DragonType type){
         //Given
         MonsterCreatorFacade monsterCreatorFacade = new MonsterCreatorConfiguration().monsterCreatorFacadeTest();
 
         //When
-        MonsterDto monster = monsterCreatorFacade.generateConcreteMonster("Dragon","Green");
+        MonsterDto monster = monsterCreatorFacade.generateConcreteMonster("Dragon",type.name());
 
         //Then
         assertThat(monster.MaxHealth()).isPositive();
-        assertThat(monster.name()).isEqualTo("Green dragon");
+        assertThat(monster.name()).isEqualTo(type.name()+" dragon");
         assertThat(monster.attacks().size()).isPositive();
         assertThat(monster.Attack()).isPositive();
         assertThat(monster.Defence()).isPositive();
     }
-    @Test
-    @DisplayName("Should generate a Gold Dragon")
-    void should_generate_a_gold_dragon(){
+
+    @ParameterizedTest
+    @EnumSource(GoblinType.class)
+    @DisplayName("Should generate each goblin type")
+    void should_generate_a_small_goblin(GoblinType type){
         //Given
         MonsterCreatorFacade monsterCreatorFacade = new MonsterCreatorConfiguration().monsterCreatorFacadeTest();
 
         //When
-        MonsterDto monster = monsterCreatorFacade.generateConcreteMonster("Dragon","Gold");
+        MonsterDto monster = monsterCreatorFacade.generateConcreteMonster("Goblin",type.name());
 
         //Then
         assertThat(monster.MaxHealth()).isPositive();
-        assertThat(monster.name()).isEqualTo("Gold dragon");
+        assertThat(monster.name()).isEqualTo(type.name()+" goblin");
         assertThat(monster.attacks().size()).isPositive();
         assertThat(monster.Attack()).isPositive();
         assertThat(monster.Defence()).isPositive();
     }
-    @Test
-    @DisplayName("Should generate a Diamond Dragon")
-    void should_generate_a_diamond_dragon(){
-        //Given
-        MonsterCreatorFacade monsterCreatorFacade = new MonsterCreatorConfiguration().monsterCreatorFacadeTest();
 
-        //When
-        MonsterDto monster = monsterCreatorFacade.generateConcreteMonster("Dragon","Diamond");
-
-        //Then
-        assertThat(monster.MaxHealth()).isPositive();
-        assertThat(monster.name()).isEqualTo("Diamond dragon");
-        assertThat(monster.attacks().size()).isPositive();
-        assertThat(monster.Attack()).isPositive();
-        assertThat(monster.Defence()).isPositive();
-    }
 }

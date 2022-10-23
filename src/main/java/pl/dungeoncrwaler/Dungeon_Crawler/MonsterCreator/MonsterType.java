@@ -1,14 +1,16 @@
 package pl.dungeoncrwaler.Dungeon_Crawler.MonsterCreator;
 
 import pl.dungeoncrwaler.Dungeon_Crawler.MonsterCreator.DragonFactory.DragonFactory;
+import pl.dungeoncrwaler.Dungeon_Crawler.MonsterCreator.GoblinFactory.GoblinFactory;
 
 //enum extendable to new monster types
 public enum MonsterType {
-    Dragon(new DragonFactory());
+    Dragon(new DragonFactory()),
+    Goblin(new GoblinFactory());
 
     private final MonsterFactory monsterFactory;
 
-    MonsterType(DragonFactory i) {
+    MonsterType(MonsterFactory i) {
         this.monsterFactory = i;
     }
 

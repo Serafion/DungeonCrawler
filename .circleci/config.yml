@@ -21,7 +21,7 @@ jobs:
           MYSQL_DATABASE: character
           MYSQL_USER: USER2
           MYSQL_PASSWORD: USER2
-    working_directory: ~/
+    working_directory: ~/temp
     steps:
       - checkout
       - run:

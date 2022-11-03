@@ -38,7 +38,7 @@ jobs:
       - run:
           name: Install MySQL CLI; Import dummy data; run an example query
           command: |
-            sudo apt-get update && sudo apt-get install default-mysql-client
+            sudo apt-get update && sudo apt-get install default-mysql-client mysql -h 127.0.0.1 -u USER2 -USER2 character
 #            mysql -h 127.0.0.1 -u USER2 -USER2 test_db < sql-data/dummy.sql
 #      - run:
 #          name: Wait for Database Connection

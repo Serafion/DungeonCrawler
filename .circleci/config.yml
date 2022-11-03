@@ -22,15 +22,15 @@ jobs:
           MYSQL_USER: USER2
           MYSQL_PASSWORD: USER2
     working_directory: ~/repo
-      steps:
-        - checkout
-        - run:
-            name: Wait for Database Connection
-            # preinstalled in circleci/* docker image
-            command: dockerize -wait tcp://localhost:3306 -timeout 1m
+    steps:
+      - checkout
+      - run:
+          name: Wait for Database Connection
+          # preinstalled in circleci/* docker image
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    steps:
+#    steps:
       # Checkout the code as the first step.
       - checkout
       # Use mvn clean and package as the standard maven build phase

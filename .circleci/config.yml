@@ -25,10 +25,26 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Wait for Database Connection
-          # preinstalled in circleci/* docker image
-          command: docker-compose -f docker-compose.yml up
-#          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+          # Our primary container isn't MYSQL so run a sleep command until it's ready.
+          name: Waiting for MySQL to be ready
+          command: |
+            for i in `seq 1 10`;
+            do
+              nc -z 127.0.0.1 3306 && echo Success && exit 0
+              echo -n .
+              sleep 1
+            done
+            echo Failed waiting for MySQL && exit 1
+      - run:
+          name: Install MySQL CLI; Import dummy data; run an example query
+          command: |
+            sudo apt-get install default-mysql-client
+#            mysql -h 127.0.0.1 -u USER2 -USER2 test_db < sql-data/dummy.sql
+#      - run:
+#          name: Wait for Database Connection
+#          # preinstalled in circleci/* docker image
+#          command: docker-compose -f docker-compose.yml up
+##          command: dockerize -wait tcp://localhost:3306 -timeout 1m
     #install mysql client
 #      - run: sudo apt-get install mysql-client
     # create databases
@@ -37,7 +53,7 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
 #    steps:
       # Checkout the code as the first step.
-      - checkout
+#      - checkout
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build

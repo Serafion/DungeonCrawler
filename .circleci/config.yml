@@ -27,11 +27,12 @@ jobs:
       - run:
           name: Wait for Database Connection
           # preinstalled in circleci/* docker image
-          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+          command: docker-compose -f docker-compose.yml up
+#          command: dockerize -wait tcp://localhost:3306 -timeout 1m
     #install mysql client
-      - run: sudo apt-get install mysql-client
+#      - run: sudo apt-get install mysql-client
     # create databases
-      - run: mysql -h 127.0.0.1 -u root -e "create database character"
+#      - run: mysql -h 127.0.0.1 -u root -e "create database character"
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
 #    steps:

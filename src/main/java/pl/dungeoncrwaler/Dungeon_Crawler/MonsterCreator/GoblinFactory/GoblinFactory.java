@@ -13,7 +13,7 @@ public class GoblinFactory extends MonsterFactory {
     private final GoblinAttackGenerator goblinAttackGenerator;
 
     public GoblinFactory() {
-        this.goblinAttackGenerator = new GoblinAttackGenerator();
+        this.goblinAttackGenerator = GoblinAttackGenerator.getInstance();
     }
 
     @Override

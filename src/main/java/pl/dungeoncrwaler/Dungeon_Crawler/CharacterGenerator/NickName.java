@@ -1,5 +1,7 @@
 package pl.dungeoncrwaler.Dungeon_Crawler.CharacterGenerator;
 
+//@Entity
+//@NoArgsConstructor
 public enum NickName {
     tiny(1),
     small(3),
@@ -8,7 +10,22 @@ public enum NickName {
     huge(10),
     enormous(20);
 
-    private final Integer value;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Column(name = "id", nullable = false)
+//    private Long id;
+
+    private Integer value;
+
+
+
+//    public Long getId() {
+//        return id;
+//    }
+
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     NickName(Integer value) {
         this.value=value;

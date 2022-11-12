@@ -8,7 +8,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: character
+      MYSQL_DATABASE: DungeonCrawler
       MYSQL_USER: USER2
       MYSQL_PASSWORD: USER2
     ports:

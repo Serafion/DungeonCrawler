@@ -3,6 +3,14 @@ package pl.dungeoncrwaler.Dungeon_Crawler.MonsterCreator.DragonFactory;
 import pl.dungeoncrwaler.Dungeon_Crawler.MonsterCreator.Attack;
 
 class DragonAttackGenerator {
+
+    private static final DragonAttackGenerator generator = new DragonAttackGenerator();
+    public static DragonAttackGenerator getInstance(){
+        return generator;
+    }
+    private DragonAttackGenerator() {
+    }
+
     public Attack basicAttack(){
         return new Attack("Attacks with claws",10);
     }

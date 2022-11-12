@@ -14,7 +14,7 @@ public class DragonFactory extends MonsterFactory {
     private final DragonAttackGenerator dragonAttackGenerator;
 
     public DragonFactory() {
-        this.dragonAttackGenerator = new DragonAttackGenerator();
+        this.dragonAttackGenerator = DragonAttackGenerator.getInstance();
     }
 
 

@@ -4,6 +4,14 @@ import pl.dungeoncrwaler.Dungeon_Crawler.MonsterCreator.Attack;
 
 class GoblinAttackGenerator {
 
+    private static final GoblinAttackGenerator generator = new GoblinAttackGenerator();
+    public static GoblinAttackGenerator getInstance(){
+        return generator;
+    }
+
+    private GoblinAttackGenerator() {
+    }
+
     public Attack basicAttack() {
         return new Attack("Goblin kick!", 4);
     }

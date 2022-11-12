@@ -8,8 +8,8 @@ Usage of external api:
 
 Stack:
 1) Java 17
-2) H2 database
+2) MySQL database
 3) Spring framework (Spring Boot, Spring Web, Spring Data)
 4) Project Lombok
-5) TDD development with JUnit5, Mockito, AssertJ
+5) TDD development with JUnit5, Mockito, AssertJ, TestContainers
 6) Circle CI builds

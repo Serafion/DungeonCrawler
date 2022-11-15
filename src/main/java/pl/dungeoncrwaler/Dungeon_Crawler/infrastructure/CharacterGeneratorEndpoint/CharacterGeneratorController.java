@@ -1,6 +1,7 @@
 package pl.dungeoncrwaler.Dungeon_Crawler.infrastructure.CharacterGeneratorEndpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +14,9 @@ public class CharacterGeneratorController {
     @Autowired
     private CharacterGeneratorFacade characterGeneratorFacade;
 
-    @GetMapping(value = "/generate_character", headers = "Accept=application/json")
+    @GetMapping(value = "/generateCharacter", headers = "Accept=application/json")
     public ResponseEntity<Character> generateCharacter(){
         Character generatedCharacter = characterGeneratorFacade.generateRandomPlayer();
-        return ResponseEntity.ok().body(generatedCharacter);
+        return ResponseEntity.status(HttpStatus.OK).body(generatedCharacter);
     }
 }

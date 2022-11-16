@@ -63,22 +63,6 @@ public class MonsterCreatorFacadeTest {
         assertThat(monster.getPower()).isPositive();
         assertThat(monster.getDefence()).isPositive();
     }
-//    @Test
-//    @DisplayName("Should generate a Gold Dragon")
-//    void should_generate_a_gold_dragon(){
-//        //Given
-//        MonsterCreatorFacade monsterCreatorFacade = new MonsterCreatorConfiguration().monsterCreatorFacadeTest();
-//
-//        //When
-//        MonsterDto monster = monsterCreatorFacade.generateConcreteMonster("Dragon","Gold");
-//
-//        //Then
-//        assertThat(monster.MaxHealth()).isPositive();
-//        assertThat(monster.name()).isEqualTo("Gold dragon");
-//        assertThat(monster.attacks().size()).isPositive();
-//        assertThat(monster.Attack()).isPositive();
-//        assertThat(monster.Defence()).isPositive();
-//    }
     @ParameterizedTest
     @EnumSource(DragonType.class)
     @DisplayName("Should generate each dragon type")

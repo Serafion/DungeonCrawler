@@ -1,6 +1,6 @@
 package pl.dungeoncrwaler.Dungeon_Crawler.MonsterCreator;
 
-public enum DragonType {
+enum DragonType {
     Green,
     Red,
     Gold,

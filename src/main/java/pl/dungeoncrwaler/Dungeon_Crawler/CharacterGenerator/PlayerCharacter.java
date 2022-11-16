@@ -5,25 +5,27 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Created_Players_Basic_Data")
 @NoArgsConstructor
-public class Character {
+public class PlayerCharacter {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "[id]", nullable = false)
     private Long id;
+    private String nameOfCharacter;
 
-    private String  nameOfCharacter;
-
+    @Column(columnDefinition = "BIGINT")
     private NickName nickName;
+    @Column(columnDefinition = "BIGINT")
     private Integer maxHealth;
+    @Column(columnDefinition = "BIGINT")
     private Integer attackPower;
+    @Column(columnDefinition = "BIGINT")
     private Integer defence;
+    @Column(columnDefinition = "BIGINT")
     private Integer runPossibility;
 
-    public Character(String name,NickName nickName, Integer maxHealth, Integer attackPower, Integer defence, Integer runPossibility) {
+    public PlayerCharacter(String name, NickName nickName, Integer maxHealth, Integer attackPower, Integer defence, Integer runPossibility) {
         this.nameOfCharacter = name;
         this.nickName = nickName;
         this.maxHealth = maxHealth;
@@ -37,16 +39,18 @@ public class Character {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Character character = (Character) o;
+        PlayerCharacter playerCharacter = (PlayerCharacter) o;
 
-        if (id != null ? !id.equals(character.id) : character.id != null) return false;
-        if (nameOfCharacter != null ? !nameOfCharacter.equals(character.nameOfCharacter) : character.nameOfCharacter != null) return false;
-//        if (nickName != character.nickName) return false;
-        if (maxHealth != null ? !maxHealth.equals(character.maxHealth) : character.maxHealth != null) return false;
-        if (attackPower != null ? !attackPower.equals(character.attackPower) : character.attackPower != null)
+        if (id != null ? !id.equals(playerCharacter.id) : playerCharacter.id != null) return false;
+        if (nameOfCharacter != null ? !nameOfCharacter.equals(playerCharacter.nameOfCharacter) : playerCharacter.nameOfCharacter != null)
             return false;
-        if (defence != null ? !defence.equals(character.defence) : character.defence != null) return false;
-        return runPossibility != null ? runPossibility.equals(character.runPossibility) : character.runPossibility == null;
+        if (nickName != playerCharacter.nickName) return false;
+        if (maxHealth != null ? !maxHealth.equals(playerCharacter.maxHealth) : playerCharacter.maxHealth != null)
+            return false;
+        if (attackPower != null ? !attackPower.equals(playerCharacter.attackPower) : playerCharacter.attackPower != null)
+            return false;
+        if (defence != null ? !defence.equals(playerCharacter.defence) : playerCharacter.defence != null) return false;
+        return runPossibility != null ? runPossibility.equals(playerCharacter.runPossibility) : playerCharacter.runPossibility == null;
     }
 
     @Override
@@ -66,53 +70,51 @@ public class Character {
     }
 
     public void setId(Long id) {
-        this.id=id;
+        this.id = id;
     }
 
     public String getName() {
         return nameOfCharacter;
     }
 
+    public void setName(String name) {
+        this.nameOfCharacter = name;
+    }
 
     public NickName getNickName() {
         return nickName;
-    }
-
-    public Integer getMaxHealth() {
-        return maxHealth;
-    }
-
-    public Integer getAttackPower() {
-        return attackPower;
-    }
-
-
-    public Integer getDefence() {
-        return defence;
-    }
-
-    public Integer getRunPossibility() {
-        return runPossibility;
-    }
-
-    public void setName(String name) {
-        this.nameOfCharacter = name;
     }
 
     public void setNickName(NickName nickName) {
         this.nickName = nickName;
     }
 
+    public Integer getMaxHealth() {
+        return maxHealth;
+    }
+
     public void setMaxHealth(Integer maxHealth) {
         this.maxHealth = maxHealth;
+    }
+
+    public Integer getAttackPower() {
+        return attackPower;
     }
 
     public void setAttackPower(Integer attackPower) {
         this.attackPower = attackPower;
     }
 
+    public Integer getDefence() {
+        return defence;
+    }
+
     public void setDefence(Integer defence) {
         this.defence = defence;
+    }
+
+    public Integer getRunPossibility() {
+        return runPossibility;
     }
 
     public void setRunPossibility(Integer runPossibility) {

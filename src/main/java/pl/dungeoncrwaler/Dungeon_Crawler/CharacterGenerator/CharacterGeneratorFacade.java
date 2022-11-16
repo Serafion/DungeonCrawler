@@ -20,21 +20,21 @@ public class CharacterGeneratorFacade {
         this.nameGenerator = nameGenerator;
     }
 
-    public Character generateRandomPlayer(){
+    public PlayerCharacter generateRandomPlayer(){
         NickName nick = nickNameGenerator.generateNickName();
 
-        Character generatedCharacter = new Character(nameGenerator.generateName(),
+        PlayerCharacter generatedPlayerCharacter = new PlayerCharacter(nameGenerator.generateName(),
                           nick,
                           statGenerator.generateStat("health",nick),
                           statGenerator.generateStat("attack",nick),
                           statGenerator.generateStat("defence",nick),
                           statGenerator.generateStat("runPossibility",nick));
-        log.info("Generated character: "+ generatedCharacter.getName()+" "+generatedCharacter.getId()+" "+generatedCharacter.getDefence());
-        playerRepository.save(generatedCharacter);
-        return playerRepository.findById(generatedCharacter.getId()).isPresent() ? playerRepository.findById(generatedCharacter.getId()).get() : null;
+        log.info("Generated character: "+ generatedPlayerCharacter.getName()+" "+ generatedPlayerCharacter.getId()+" "+ generatedPlayerCharacter.getDefence());
+        playerRepository.save(generatedPlayerCharacter);
+        return playerRepository.findById(generatedPlayerCharacter.getId()).isPresent() ? playerRepository.findById(generatedPlayerCharacter.getId()).get() : null;
     }
 
-    public Optional<Character> getPlayer(Long id){
+    public Optional<PlayerCharacter> getPlayer(Long id){
         return playerRepository.findById(id);
     }
 }

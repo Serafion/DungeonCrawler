@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CharacterGeneratorFacadeTest {
+class PlayerCharacterGeneratorFacadeTest {
 
 
 
@@ -20,16 +20,16 @@ class CharacterGeneratorFacadeTest {
     CharacterGeneratorFacade characterGeneratorFacade = new CharacterGeneratorConfiguration().characterGeneratorFacadeForTest(repository,nameGenerator);
 
     //When
-    Character character = characterGeneratorFacade.generateRandomPlayer();
+    PlayerCharacter playerCharacter = characterGeneratorFacade.generateRandomPlayer();
 
     //Then
-    assertThat(character.getMaxHealth()).isPositive();
-    assertThat(character.getName()).isGreaterThan("");
-    assertThat(character.getId()).isGreaterThan(-1L);
-    assertThat(character.getRunPossibility()).isPositive();
-    assertThat(character.getDefence()).isPositive();
-    assertThat(character.getAttackPower()).isPositive();
-    assertThat(character.getNickName()).isNotNull();
+    assertThat(playerCharacter.getMaxHealth()).isPositive();
+    assertThat(playerCharacter.getName()).isGreaterThan("");
+    assertThat(playerCharacter.getId()).isGreaterThan(-1L);
+    assertThat(playerCharacter.getRunPossibility()).isPositive();
+    assertThat(playerCharacter.getDefence()).isPositive();
+    assertThat(playerCharacter.getAttackPower()).isPositive();
+    assertThat(playerCharacter.getNickName()).isNotNull();
     }
 
     @Test
@@ -39,10 +39,10 @@ class CharacterGeneratorFacadeTest {
         CharacterGeneratorTestRepository repository = new CharacterGeneratorTestRepository();
         NameGenerator nameGenerator = new NameGeneratorTest();
         CharacterGeneratorFacade characterGeneratorFacade = new CharacterGeneratorConfiguration().characterGeneratorFacadeForTest(repository,nameGenerator);
-        Character character = characterGeneratorFacade.generateRandomPlayer();
+        PlayerCharacter playerCharacter = characterGeneratorFacade.generateRandomPlayer();
 
         //When
-        Optional<Character> playerOptional = characterGeneratorFacade.getPlayer(character.getId());
+        Optional<PlayerCharacter> playerOptional = characterGeneratorFacade.getPlayer(playerCharacter.getId());
 
         //Then
         assertThat(playerOptional).isPresent();
@@ -54,10 +54,10 @@ class CharacterGeneratorFacadeTest {
         CharacterGeneratorTestRepository repository = new CharacterGeneratorTestRepository();
         NameGenerator nameGenerator = new NameGeneratorTest();
         CharacterGeneratorFacade characterGeneratorFacade = new CharacterGeneratorConfiguration().characterGeneratorFacadeForTest(repository,nameGenerator);
-        Character character = characterGeneratorFacade.generateRandomPlayer();
+        PlayerCharacter playerCharacter = characterGeneratorFacade.generateRandomPlayer();
 
         //When
-        Optional<Character> playerOptional = characterGeneratorFacade.getPlayer(character.getId()-1);
+        Optional<PlayerCharacter> playerOptional = characterGeneratorFacade.getPlayer(playerCharacter.getId()-1);
 
         //Then
         assertThat(playerOptional).isEmpty();

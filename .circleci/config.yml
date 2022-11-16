@@ -18,7 +18,7 @@ jobs:
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ''
-          MYSQL_DATABASE: character
+          MYSQL_DATABASE: DungeonCrawler
           MYSQL_USER: USER2
           MYSQL_PASSWORD: USER2
     working_directory: ~/temp

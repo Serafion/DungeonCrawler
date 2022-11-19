@@ -1,25 +1,33 @@
 package pl.dungeoncrwaler.Dungeon_Crawler.GameLogic;
 
-import pl.dungeoncrwaler.Dungeon_Crawler.GameLogic.Dto.GameLogicDto;
+import pl.dungeoncrwaler.Dungeon_Crawler.CharacterGenerator.CharacterGeneratorFacade;
+import pl.dungeoncrwaler.Dungeon_Crawler.MonsterCreator.MonsterCreatorFacade;
 
-public class LogicChain {
+class LogicChain {
 
-    StartGameLogicProcessor startGameLogicProcessor;
-    OpenDoorProjectProcessor openDoorProjectProcessor;
+    private final MonsterCreatorFacade monsterCreatorFacade;
+    private final CharacterGeneratorFacade characterGeneratorFacade;
 
-    public LogicChain(StartGameLogicProcessor startGameLogicProcessor, OpenDoorProjectProcessor openDoorProjectProcessor) {
+    private final StartGameLogicProcessor startGameLogicProcessor;
+    private final OpenDoorProcessor openDoorProjectProcessor;
+
+    public LogicChain(MonsterCreatorFacade monsterCreatorFacade, CharacterGeneratorFacade characterGeneratorFacade, StartGameLogicProcessor startGameLogicProcessor, OpenDoorProcessor openDoorProjectProcessor) {
+        this.monsterCreatorFacade = monsterCreatorFacade;
+        this.characterGeneratorFacade = characterGeneratorFacade;
         this.startGameLogicProcessor = startGameLogicProcessor;
         this.openDoorProjectProcessor = openDoorProjectProcessor;
     }
 
+
+    //Chain setup - add new Processors in chain setup
     LogicProcessor getChain(){
         startGameLogicProcessor.setNextProcessor(openDoorProjectProcessor);
         return startGameLogicProcessor;
     }
 
-    GameLogicDto process(String request){
-        return startGameLogicProcessor.processRequest(request);
-    }
+//    GameLogicDto process(String request){
+//        return startGameLogicProcessor.processRequest(request);
+//    }
 
 
 }

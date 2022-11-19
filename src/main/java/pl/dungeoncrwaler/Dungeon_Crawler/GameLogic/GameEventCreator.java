@@ -2,7 +2,7 @@ package pl.dungeoncrwaler.Dungeon_Crawler.GameLogic;
 
 import java.util.Random;
 
-public class GameEventCreator {
+class GameEventCreator {
 
    public GameOptions randomGameOption(){
        Random random = new Random();

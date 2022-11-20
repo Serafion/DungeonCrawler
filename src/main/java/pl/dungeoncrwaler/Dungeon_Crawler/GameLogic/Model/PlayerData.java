@@ -5,10 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Embeddable;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Embeddable
 public class PlayerData {
     private Long id;
     private String nameOfCharacter;

@@ -40,19 +40,17 @@ class OpenDoorProcessor extends LogicProcessor {
     public GameLogicDto processRequest(String request) {
         String[] parsed = request.split(",");
         try {
-            UUID uuid = UUID.fromString(parsed[0]);
             if (parsed[1].equals("openDoor")) {
+                UUID uuid = UUID.fromString(parsed[0]);
                 SingleGame game = gameLogicRepository.findById(uuid).orElseThrow(GameNotFoundException::new);
                 GameOptions options = gameEventCreator.randomGameOption();
                 GameLogicDto dto = processGameOption(game, options);
                 if (dto != null) return dto;
             }
         } catch (IllegalArgumentException ex) {
-            GameLogicDto dto = getErrorGameLogicDto(ex, "Wrong game reference provided");
-            return dto;
+            return getErrorGameLogicDto(ex, "Wrong game reference provided");
         } catch (GameNotFoundException ex) {
-            GameLogicDto dto = getErrorGameLogicDto(ex, "Wrong game reference provided - game does not exist");
-            return dto;
+            return getErrorGameLogicDto(ex, "Wrong game reference provided - game does not exist");
         }
         return logicProcessor.processRequest(request);
     }
@@ -61,7 +59,7 @@ class OpenDoorProcessor extends LogicProcessor {
     private GameLogicDto processGameOption(SingleGame game, GameOptions options) {
         switch (options) {
             case FOUND_NEW_MONSTER -> {
-                MonsterData monsterData = game.getMonsterData();
+                MonsterData monsterData;
                 MonsterDto monsterDto = monsterCreatorFacade.generateRandomMonster();
                 monsterData = GameLogicMapper.fromMonsterDto(monsterDto);
                 game.setMonsterData(monsterData);

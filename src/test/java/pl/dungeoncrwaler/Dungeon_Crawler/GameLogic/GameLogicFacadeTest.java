@@ -1,5 +1,6 @@
 package pl.dungeoncrwaler.Dungeon_Crawler.GameLogic;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -52,6 +53,41 @@ public class GameLogicFacadeTest {
     }
 
     @Test
+    @DisplayName("Should send error massage for invalid number format provided")
+    void should_send_error_message_for_invalid_number() {
+        //Given
+        GameLogicFacade gameLogicFacade = new GameLogicConfiguration().gameLogicForTests(monsterCreatorFacade, characterGeneratorFacade, new GameLogicRepositoryTest(), gameEventCreator);
+        String request = "1hf,startNewGame";
+
+        //When
+        GameLogicDto dto = gameLogicFacade.processRequest(request);
+
+        //Then
+        assertThat(dto.getMessage()).isEqualTo("Something is wrong with you character data and you cannot start new game!!!!");
+        assertThat(dto.getUuid()).isNull();
+        assertThat(dto.getMonsterCurrentHealth()).isNull();
+        assertThat(dto.getPlayerCurrentHealth()).isNull();
+    }
+
+    @Test
+    @DisplayName("Should send a message that player does not exist in database")
+    void should_send_error_message_that_player_does_not_exist() {
+        //Given
+        GameLogicFacade gameLogicFacade = new GameLogicConfiguration().gameLogicForTests(monsterCreatorFacade, characterGeneratorFacade, new GameLogicRepositoryTest(), gameEventCreator);
+        given(characterGeneratorFacade.getPlayer(1L)).willReturn(Optional.empty());
+        String request = "1,startNewGame";
+
+        //When
+        GameLogicDto dto = gameLogicFacade.processRequest(request);
+
+        //Then
+        assertThat(dto.getMessage()).isEqualTo("Player not in found in DB, cannot start new game!!!");
+        assertThat(dto.getUuid()).isNull();
+        assertThat(dto.getMonsterCurrentHealth()).isNull();
+        assertThat(dto.getPlayerCurrentHealth()).isNull();
+    }
+
+    @Test
     @DisplayName("Should return a message to choose fight option after engaging new fight")
     void should_return_options_message() {
         //Given
@@ -74,29 +110,70 @@ public class GameLogicFacadeTest {
     }
 
     @Test
+    @DisplayName("Should return a message to choose fight option after engaging new fight")
+    void should_return_error_message_that_game_is_not_in_db() {
+        //Given
+        GameLogicRepositoryTest gameLogicRepositoryTest = new GameLogicRepositoryTest();
+        GameLogicFacade gameLogicFacade = new GameLogicConfiguration().gameLogicForTests(monsterCreatorFacade, characterGeneratorFacade, gameLogicRepositoryTest,gameEventCreator);
+        String request = "13e43f6d-d372-4e8e-86b4-4ff6bfe130f6,openDoor";
+
+        //When
+        GameLogicDto gameLogicDTO = gameLogicFacade.processRequest(request);
+
+        //Then
+        assertThat(gameLogicDTO.getMessage()).isEqualTo("Wrong game reference provided - game does not exist");
+        assertThat(gameLogicDTO.getUuid()).isNull();
+        assertThat(gameLogicDTO.getMonsterCurrentHealth()).isNull();
+        assertThat(gameLogicDTO.getPlayerCurrentHealth()).isNull();
+    }
+
+    @Test
+    @DisplayName("Should return error message that game does not exist")
+    void should_return_error_message_that_game_does_not_exist() {
+        //Given
+        GameLogicRepositoryTest gameLogicRepositoryTest = new GameLogicRepositoryTest();
+        GameLogicFacade gameLogicFacade = new GameLogicConfiguration().gameLogicForTests(monsterCreatorFacade, characterGeneratorFacade, gameLogicRepositoryTest,gameEventCreator);
+        String request = "13,openDoor";
+
+        //When
+        GameLogicDto gameLogicDTO = gameLogicFacade.processRequest(request);
+
+        //Then
+        assertThat(gameLogicDTO.getMessage()).isEqualTo("Wrong game reference provided");
+        assertThat(gameLogicDTO.getUuid()).isNull();
+        assertThat(gameLogicDTO.getMonsterCurrentHealth()).isNull();
+        assertThat(gameLogicDTO.getPlayerCurrentHealth()).isNull();
+    }
+
+    @Disabled
+    @Test
     @DisplayName("Should return information that player was killed by the monster and added to leaderboard")
     void player_death_message_test() {
 
     }
 
+    @Disabled
     @Test
     @DisplayName("Should return information about damage made to monster and damage suffered")
     void single_attack_turn_test() {
 
     }
 
+    @Disabled
     @Test
     @DisplayName("Should return information that a monster was killed")
     void monster_death_message_test() {
 
     }
 
+    @Disabled
     @Test
     @DisplayName("Should return information that player has hid and regained health")
     void hide_action_test() {
 
     }
 
+    @Disabled
     @Test
     @DisplayName("Should return a message that player tried to hide but instead was hit")
     void failure_of_hide_option_test() {

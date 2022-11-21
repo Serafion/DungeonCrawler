@@ -45,9 +45,9 @@ class StartGameLogicProcessor extends LogicProcessor{
             dto.setMessage("Created new game, you're ready to enter the dungeon!");
             return dto;}
         } catch (NumberFormatException ex){
-            return getErrorGameLogicDto(ex,"Exception while character number into new game!!!!");
+            return getErrorGameLogicDto(ex,"Something is wrong with you character data and you cannot start new game!!!!");
         } catch (PlayerNotFoundException ex){
-            return getErrorGameLogicDto(ex,"Player not in found in DB");
+            return getErrorGameLogicDto(ex,"Player not in found in DB, cannot start new game!!!");
         }
         return logicProcessor.processRequest(request);
     }

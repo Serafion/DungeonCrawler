@@ -22,7 +22,7 @@ abstract class LogicProcessor {
     protected GameLogicDto getErrorGameLogicDto(Exception ex, String message) {
         log.info(ex.getClass() + " " + ex.getMessage());
         GameLogicDto dto = new GameLogicDto();
-        dto.setMessage(message + " " + OpenDoorProcessor.class);
+        dto.setMessage(message);
         return dto;
     }
 

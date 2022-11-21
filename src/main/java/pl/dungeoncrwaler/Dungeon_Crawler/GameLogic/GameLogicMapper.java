@@ -14,7 +14,7 @@ class GameLogicMapper {
     }
 
     public static GameLogicDto fromSingleGame(SingleGame singleGame){
-        return new GameLogicDto(singleGame.getId(),singleGame.getMonsterData().getMonsterName(),singleGame.getMonsterData().getCurrentHealth(),singleGame.getMonsterData().getMaxHealth(),singleGame.getPlayerData().getCurrentHealth(),singleGame.getPlayerData().getMaxHealth(),"");
+        return new GameLogicDto(singleGame.getId(),singleGame.getMonsterData().getMonsterName(),singleGame.getMonsterData().getCurrentMonsterHealth(),singleGame.getMonsterData().getMaxMonsterHealth(),singleGame.getPlayerData().getCurrentHealth(),singleGame.getPlayerData().getMaxHealth(),"");
     }
 
     public static MonsterData fromMonsterDto(MonsterDto monsterDto){

@@ -1,7 +1,6 @@
 package pl.dungeoncrwaler.Dungeon_Crawler.HttpClients.NameModel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import pl.dungeoncrwaler.Dungeon_Crawler.HttpClients.NameModel.Coordinates;
 
 public class Location{
     @JsonProperty("street")
@@ -29,11 +28,11 @@ public class Location{
 		 this.country = country; } 
     String country;
     @JsonProperty("postcode") 
-    public int getPostcode() { 
+    public String getPostcode() {
 		 return this.postcode; } 
-    public void setPostcode(int postcode) { 
+    public void setPostcode(String postcode) {
 		 this.postcode = postcode; } 
-    int postcode;
+    String postcode;
     @JsonProperty("coordinates") 
     public Coordinates getCoordinates() {
 		 return this.coordinates; } 

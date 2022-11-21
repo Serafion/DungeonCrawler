@@ -28,7 +28,7 @@ public class GameLogicRepositoryTest implements GameLogicRepository {
 
     @Override
     public Optional<SingleGame> findById(UUID uuid) {
-        return Optional.of(map.get(uuid));
+        return map.containsKey(uuid) ? Optional.of(map.get(uuid)) : Optional.empty();
     }
 
     @Override

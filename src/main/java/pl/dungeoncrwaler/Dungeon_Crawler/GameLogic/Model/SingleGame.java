@@ -13,26 +13,22 @@ import java.util.UUID;
                 column = @Column(name = "monsterName", columnDefinition = "VARCHAR(255)")
 
         ),
-        @AttributeOverride(
-                name = "MonsterData.currentHealth",
-                column = @Column(name = "monsterCurrentHealth", columnDefinition = "BIGINT")
-        ),
-        @AttributeOverride(
-                name = "MonsterData.maxHealth",
-                column = @Column(name = "monsterMaxHealth", columnDefinition = "BIGINT")
-        ),
-        @AttributeOverride(
-                name = "MonsterData.attack",
-                column = @Column(name = "monsterAttack", columnDefinition = "BIGINT")
-        ),
-        @AttributeOverride(
-                name = "MonsterData.defence",
-                column = @Column(name = "monsterDefence", columnDefinition = "BIGINT")
-        ),
-        @AttributeOverride(
-                name = "MonsterData.attacks",
-                column = @Column(name = "monsterAttacks")
-        ),
+//        @AttributeOverride(
+//                name = "MonsterData.currentMonsterHealth",
+//                column = @Column(name = "monsterCurrentHealth", columnDefinition = "BIGINT")
+//        ),
+//        @AttributeOverride(
+//                name = "MonsterData.maxMonsterHealth",
+//                column = @Column(name = "monsterMaxHealth", columnDefinition = "BIGINT")
+//        ),
+//        @AttributeOverride(
+//                name = "MonsterData.attackMonsterValue",
+//                column = @Column(name = "attackMonsterValue", columnDefinition = "BIGINT")
+//        ),
+//        @AttributeOverride(
+//                name = "MonsterData.defenceMonsterValue",
+//                column = @Column(name = "monsterDefence", columnDefinition = "BIGINT")
+//        ),
         @AttributeOverride(
                 name = "PlayerData.id",
                 column = @Column(name = "playerId", columnDefinition = "BIGINT")
@@ -62,7 +58,7 @@ import java.util.UUID;
 
 public class SingleGame {
     @Id
-    @Column(name = "id", nullable = false, columnDefinition = "VARCHAR(36)")
+    @Column(name = "gameID", nullable = false, columnDefinition = "VARCHAR(36)")
     private UUID id;
     @Embedded
     private MonsterData monsterData;

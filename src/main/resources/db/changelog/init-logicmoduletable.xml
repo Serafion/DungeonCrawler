@@ -2,22 +2,60 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
     <changeSet author="PZ" id="4">
         <createTable tableName="single_game">
-            <column name="id" type="VARCHAR(36)">
+            <column name="gameid" type="VARCHAR(36)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="monsterName" type="VARCHAR(255)"/>
-            <column name="monsterCurrentHealth" type="BIGINT"/>
-            <column name="monsterMaxHealth" type="BIGINT"/>
-            <column name="monsterAttack" type="BIGINT"/>
-            <column name="monsterDefence" type="BIGINT"/>
-            <column name="monsterAttacks" type="BIGINT"/>
-            <column name="playerId" type="BIGINT"/>
-            <column name="playerName" type="VARCHAR(255)"/>
-            <column name="playerCurrentHealth" type="BIGINT"/>
-            <column name="playerMaxHealth" type="BIGINT"/>
+            <column name="monster_name" type="VARCHAR(255)"/>
+            <column name="current_monster_health" type="BIGINT"/>
+            <column name="max_monster_health" type="BIGINT"/>
+            <column name="attack_monster_value" type="BIGINT"/>
+            <column name="defence_monster_value" type="BIGINT"/>
+            <column name="attack_power" type="integer"/>
+            <column name="id" type="BIGINT"/>
+            <column name="name_of_character" type="VARCHAR(255)"/>
+            <column name="current_health" type="integer"/>
+            <column name="max_health" type="integer"/>
             <column name="playerAttack" type="BIGINT"/>
-            <column name="playerDefence" type="BIGINT"/>
-            <column name="playerRunPossibility" type="BIGINT"/>
+            <column name="defence" type="integer"/>
+            <column name="run_possibility" type="integer"/>
+
+
+<!--            create table single_game (-->
+
+<!--            attack_power integer,-->
+<!--            current_health integer,-->
+<!--            defence integer,-->
+<!--            id bigint,-->
+<!--            max_health integer,-->
+<!--            name_of_character varchar(255),-->
+<!--            run_possibility integer,-->
+<!--            primary key (gameid)-->
         </createTable>
     </changeSet>
+    <changeSet author="PZ" id="5">
+        <createTable tableName="single_game_attacks">
+            <column name="single_game_gameid" type="VARCHAR(36)">
+                <constraints nullable="false" foreignKeyName="gameid" referencedTableName="single_game"/>
+            </column>
+            <column name="attack_name" type="VARCHAR(255)"/>
+            <column name="attack_power" type="integer"/>
+
+<!--            create table single_game_attacks (-->
+<!--            single_game_gameid VARCHAR(36) not null,-->
+<!--            attack_name varchar(255),-->
+<!--            attack_power integer-->
+<!--            ) engine=InnoDB-->
+
+<!--            alter table single_game_attacks-->
+<!--            add constraint FKevajucpq815o5tmclx8b6jox8-->
+<!--            foreign key (single_game_gameid)-->
+<!--            references single_game (gameid)-->
+        </createTable>
+    </changeSet>
+<!--    <changeSet author="PZ" id="6">-->
+<!--        <sql>alter table single_game_attacks-->
+<!--        add constraint FKevajucpq815o5tmclx8b6jox8-->
+<!--        foreign key (single_game_gameid)-->
+<!--            references single_game (gameid)</sql>-->
+<!--    </changeSet>-->
 </databaseChangeLog>
